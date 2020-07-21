@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".PlayActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+
+        <ImageView
+            android:onClick="dialogGoiY"
+            android:id="@+id/img_suggest"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:src="@drawable/suggest"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_man"
+            android:background="@drawable/bg_man"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:text="Màn 1"
+            android:textAllCaps="true"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:background="@drawable/bg_diamond"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_diamond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/diamond"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_image"
+        android:padding="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="30dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cattuong" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:minHeight="100dp">
+
+        <GridView
+            android:id="@+id/gdvDapan"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:gravity="center"></GridView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_gravity="bottom"
+        android:gravity="center">
+
+        <GridView
+            android:id="@+id/gdvChondapan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"></GridView>
+
+    </RelativeLayout>
+
+</LinearLayout>
