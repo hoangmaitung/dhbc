@@ -174,6 +174,11 @@ public class PlayActivity extends AppCompatActivity {
             s = s + s1;
         }
         s = s.toUpperCase();
+
+        if (s.length() == dapan.length() && !s.equals(dapan.toUpperCase())){
+            Toast.makeText(this,"Bạn đã trả lời sai !!!", Toast.LENGTH_SHORT).show();
+        }
+
         if (s.equals(dapan.toUpperCase())) {
             adapter.laythongtin();
             adapter.nguoidung.diamond = adapter.nguoidung.diamond + 5;
@@ -197,12 +202,12 @@ public class PlayActivity extends AppCompatActivity {
 
         dialog.show();
 
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                hiencauhoi();
-            }
-        });
+//        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//            @Override
+//            public void onDismiss(DialogInterface dialog) {
+//                hiencauhoi();
+//            }
+//        });
 
     }
 
@@ -234,7 +239,7 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
-    private void goiy() {
+    public void goiy() {
         adapter.laythongtin();
         //kiem tra con diamond k
         if (adapter.nguoidung.diamond < 5) {
@@ -249,8 +254,10 @@ public class PlayActivity extends AppCompatActivity {
                 break;
             }
         }
+
         //nguoi dung tl sai
         if (id == -1) {
+            //kiem tra vi tri sai
             for (int i = 0; i < listDapan.size(); i++) {
                 String s = dapan.toUpperCase().charAt(i) + "";
                 if (!listDapan.get(i).toUpperCase().equals(s)) {
@@ -259,6 +266,7 @@ public class PlayActivity extends AppCompatActivity {
                 }
             }
 
+            //chuyen gia tri vi tri sai xuong duoi
             for (int i = 0; i < listChondapan.size(); i++) {
                 if (listChondapan.get(i).length() == 0) {
                     listChondapan.set(i, listDapan.get(id));
@@ -267,22 +275,35 @@ public class PlayActivity extends AppCompatActivity {
             }
         }
 
+        //lay dap an dung
         String goiy = "" + dapan.charAt(id);
         goiy = goiy.toUpperCase();
-        for (int i = 0; i < listDapan.size(); i++) {
-            if (listDapan.get(i).toUpperCase().equals(goiy)) {
-                listDapan.set(i, "");
-                break;
+
+        int a = 0;
+
+        //chon dap an trong listchondapan
+        if (a == 0){
+            for (int i = 0; i < listChondapan.size(); i++) {
+                if (goiy.equals(listChondapan.get(i))) {
+                    listChondapan.set(i, "");
+                    a++ ;
+                    break;
+                }
+            }
+            a--;
+        }
+
+        //chon dap an trong listdapan
+        if(a < 0){
+            for (int i = 0; i < listDapan.size(); i++) {
+                if (listDapan.get(i).toUpperCase().equals(goiy)) {
+                    listDapan.set(i, "");
+                    break;
+                }
             }
         }
 
-        for (int i = 0; i < listChondapan.size(); i++) {
-            if (goiy.equals(listChondapan.get(i))) {
-                listChondapan.set(i, "");
-                break;
-            }
-        }
-
+        //set vi tri listdapan
         listDapan.set(id, goiy);
         hienthiChondapan();
         hienthidapan();
@@ -291,5 +312,6 @@ public class PlayActivity extends AppCompatActivity {
         adapter.luuthongtin();
         tvDiamond.setText(adapter.nguoidung.diamond + "");
         checktl();
+
     }
 }

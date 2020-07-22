@@ -8,7 +8,6 @@ import com.example.da1.object.Nguoidung;
 import java.util.ArrayList;
 
 public class CauhoiAdapter {
-
     PlayActivity activity;
     ArrayList<Cauhoi> list = new ArrayList<>();
     int causo = -1;
@@ -41,4 +40,5 @@ public class CauhoiAdapter {
         nguoidung.saveDiamond(activity);
 
     }
+
 }

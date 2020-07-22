@@ -10,10 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.da1.api.Data;
 import com.example.da1.api.GetData;
-import com.example.da1.presenter.HomePresenter;
-import com.example.da1.presenter.HomeView;
 
-public class HomeActivity extends AppCompatActivity implements HomeView, View.OnClickListener {
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,50 +25,35 @@ public class HomeActivity extends AppCompatActivity implements HomeView, View.On
     Button btnHd;
     Button btnExit;
     Button playGame;
-    HomePresenter homePresenter;
 
-    public void anhxa(){
+    public void anhxa() {
         playGame = (Button) findViewById(R.id.play_game);
         btnHd = (Button) findViewById(R.id.btn_hd);
         btnExit = (Button) findViewById(R.id.btn_exit);
     }
 
     private void action() {
-        playGame.setOnClickListener(this);
-        btnHd.setOnClickListener(this);
-        btnExit.setOnClickListener(this);
+        playGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Data.getData().arrcauhoi.size() != 0) {
+                    startActivity(new Intent(HomeActivity.this, PlayActivity.class));
+                }
+            }
+        });
+        btnHd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, HdActivity.class));
+            }
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConfirmDialog();
+            }
+        });
     }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.play_game) {
-            homePresenter.playgame();
-        }
-        if (v.getId() == R.id.btn_hd) {
-            homePresenter.hdgame();
-        }
-        if(v.getId() == R.id.btn_exit) {
-            homePresenter.exitgame();
-        }
-    }
-
-    @Override
-    public void playGame() {
-        if (Data.getData().arrcauhoi.size() != 0) {
-            startActivity(new Intent(HomeActivity.this, PlayActivity.class));
-        }
-    }
-
-    @Override
-    public void hdGame() {
-        startActivity(new Intent(HomeActivity.this, HdActivity.class));
-    }
-
-    @Override
-    public void exitGame() {
-        showConfirmDialog();
-    }
-
 
     private void showConfirmDialog() {
         final Dialog dialog = new Dialog(HomeActivity.this);
