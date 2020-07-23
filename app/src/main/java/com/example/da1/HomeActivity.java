@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         new GetData().execute();
         anhxa();
         action();
@@ -74,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         dialog.show();
 
 

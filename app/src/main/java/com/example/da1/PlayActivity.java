@@ -68,19 +68,26 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void hiencauhoi() {
+        //lấy câu hỏi
         cauhoi = adapter.laycauhoi();
+        //Lấy đáp án
         dapan = cauhoi.dapan;
+        //hiển thị grid
         sooDapan();
         hienthidapan();
         hienthiChondapan();
+        //hiển thị ảnh
         Glide.with(this)
                 .load(cauhoi.anh)
                 .into(imageView);
+        //Hiển thị số màn
+        tvMan.setText(cauhoi.ten);
         tvMan.setText(cauhoi.ten);
 
+        //hiển thị số kc
         adapter.laythongtin();
         tvDiamond.setText(adapter.nguoidung.diamond + "");
-        tvMan.setText(cauhoi.ten);
+
 
     }
 
@@ -130,7 +137,10 @@ public class PlayActivity extends AppCompatActivity {
         gdvChondapan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Lấy giá trị ô nhấn vào
                 String s = (String) parent.getItemAtPosition(position);
+
+                //kiểm tra giá trị có trống ko và listdapan còn trống
                 if (s.length() != 0 && index < listDapan.size()) {
                     for (int i = 0; i < listDapan.size(); i++) {
                         if (listDapan.get(i).length() == 0) {
@@ -138,11 +148,20 @@ public class PlayActivity extends AppCompatActivity {
                             break;
                         }
                     }
+
+                    //xóa giá trị ở ô nhấn vào
                     listChondapan.set(position, "");
+
+                    //gán giá trị vào listdapan
                     listDapan.set(index, s);
+
+                    //vị trí tiếp theo trong listdapan
                     index++;
+
+                    //reset hien thị grid
                     hienthidapan();
                     hienthiChondapan();
+
                     checktl();
                 }
             }
@@ -151,16 +170,25 @@ public class PlayActivity extends AppCompatActivity {
         gdvDapan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Lấy giá trị ô nhấn vào
                 String s = (String) parent.getItemAtPosition(position);
+
+                //kiểm tra giá trị có trống ko
                 if (s.length() != 0) {
                     index = position;
+
+                    //xóa giá trị ô nhấn vào trong listdapan
                     listDapan.set(position, "");
+
+                    //Gán giá trị vào ô còn trống trong listchondapan
                     for (int i = 0; i < listChondapan.size(); i++) {
                         if (listChondapan.get(i).length() == 0) {
                             listChondapan.set(i, s);
                             break;
                         }
                     }
+
+                    //reset hien thị grid
                     hienthidapan();
                     hienthiChondapan();
                 }
@@ -175,16 +203,25 @@ public class PlayActivity extends AppCompatActivity {
         }
         s = s.toUpperCase();
 
+        //Nếu trả lời sai
         if (s.length() == dapan.length() && !s.equals(dapan.toUpperCase())){
             Toast.makeText(this,"Bạn đã trả lời sai !!!", Toast.LENGTH_SHORT).show();
         }
 
+        //Nếu trả lời đúng
         if (s.equals(dapan.toUpperCase())) {
+
+            //cộng 5 kc
             adapter.laythongtin();
             adapter.nguoidung.diamond = adapter.nguoidung.diamond + 5;
             adapter.luuthongtin();
+
+            //show dialog và reset vị trí index
             showDialogWin();
+            index = 0;
         }
+
+
     }
 
     private void showDialogWin() {
@@ -192,6 +229,7 @@ public class PlayActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_win);
         Button btnNext = dialog.findViewById(R.id.btn_next);
 
+        //Nhấn next thì tắt dialog và sang màn mới
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,13 +240,6 @@ public class PlayActivity extends AppCompatActivity {
 
         dialog.show();
 
-//        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//            @Override
-//            public void onDismiss(DialogInterface dialog) {
-//                hiencauhoi();
-//            }
-//        });
-
     }
 
     public void dialogGoiY(View view) {
@@ -216,10 +247,9 @@ public class PlayActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(PlayActivity.this);
         dialog.setContentView(R.layout.dialog_suggest);
         Button btnYes = dialog.findViewById(R.id.btn_yes);
-
-
         ImageView idClose = dialog.findViewById(R.id.id_close);
 
+        //Nhấn x thì tắt dialog
         idClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,6 +257,7 @@ public class PlayActivity extends AppCompatActivity {
             }
         });
 
+        //Nhấn có thì sử dụng gợi ý
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,12 +272,12 @@ public class PlayActivity extends AppCompatActivity {
 
     public void goiy() {
         adapter.laythongtin();
-        //kiem tra con diamond k
+        //Kiểm tra còn đử diamond ko
         if (adapter.nguoidung.diamond < 5) {
             Toast.makeText(this, "Bạn không còn đủ kim cương", Toast.LENGTH_SHORT).show();
             return;
         }
-        //kiem tra dap an con trong
+        //Kiểm tra listdapan còn trống ko
         int id = -1;
         for (int i = 0; i < listDapan.size(); i++) {
             if (listDapan.get(i).length() == 0) {
@@ -255,7 +286,7 @@ public class PlayActivity extends AppCompatActivity {
             }
         }
 
-        //nguoi dung tl sai
+        //Kiểm tra người dùng trả lời sai
         if (id == -1) {
             //kiem tra vi tri sai
             for (int i = 0; i < listDapan.size(); i++) {
@@ -275,13 +306,13 @@ public class PlayActivity extends AppCompatActivity {
             }
         }
 
-        //lay dap an dung
+        //Lấy giá trị đáp án đúng
         String goiy = "" + dapan.charAt(id);
         goiy = goiy.toUpperCase();
 
         int a = 0;
 
-        //chon dap an trong listchondapan
+        //chọn giá trị đáp án trong listchondapan để xóa
         if (a == 0){
             for (int i = 0; i < listChondapan.size(); i++) {
                 if (goiy.equals(listChondapan.get(i))) {
@@ -293,7 +324,7 @@ public class PlayActivity extends AppCompatActivity {
             a--;
         }
 
-        //chon dap an trong listdapan
+        //chọn giá trị đáp án trong listdapan để xóa
         if(a < 0){
             for (int i = 0; i < listDapan.size(); i++) {
                 if (listDapan.get(i).toUpperCase().equals(goiy)) {
@@ -303,14 +334,21 @@ public class PlayActivity extends AppCompatActivity {
             }
         }
 
-        //set vi tri listdapan
+        //Gán giá trị vào listdapan
         listDapan.set(id, goiy);
+
+        //load lại gridview
         hienthiChondapan();
         hienthidapan();
+
+        //trừ 5 kc
         adapter.laythongtin();
         adapter.nguoidung.diamond = adapter.nguoidung.diamond - 5;
         adapter.luuthongtin();
+
+        //Hiển thị lại số kc
         tvDiamond.setText(adapter.nguoidung.diamond + "");
+
         checktl();
 
     }

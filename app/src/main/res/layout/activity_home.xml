@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".HomeActivity">
 
     <ImageView
@@ -17,9 +17,8 @@
         android:id="@+id/play_game"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_play"
-        android:onClick="choigame"
         android:layout_margin="30dp"
+        android:background="@drawable/btn_play"
         android:text="Chơi ngay"
         android:textAllCaps="false"
         android:textColor="#ffffff"
@@ -30,23 +29,22 @@
         android:id="@+id/btn_hd"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/btn_play"
         android:text="Hướng dẫn"
         android:textAllCaps="false"
-        android:textSize="25sp"
-        android:layout_marginBottom="30dp"
-        android:onClick="choigame"
         android:textColor="#ffffff"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_exit"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
         android:background="@drawable/btn_play"
         android:text="Thoát"
         android:textAllCaps="false"
+        android:textColor="#ffffff"
         android:textSize="25sp"
         android:textStyle="bold" />
 
