@@ -1,7 +1,6 @@
 package com.example.da1;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,9 +9,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.bumptech.glide.Glide;
 import com.example.da1.adapter.CauhoiAdapter;
 import com.example.da1.adapter.DapanAdapter;
@@ -22,35 +19,27 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-
         init();
         anhxa();
         setOnClick();
         hiencauhoi();
-
     }
-
     CauhoiAdapter adapter;
     Cauhoi cauhoi;
     String dapan;
-
     ArrayList<String> listDapan;
     private GridView gdvDapan;
     ArrayList<String> listChondapan;
     private GridView gdvChondapan;
-
     int index = 0;
-
     private ImageView imageView;
     private TextView tvDiamond;
     private ImageView imgSuggest;
     private TextView tvMan;
-
     private void anhxa() {
         gdvDapan = (GridView) findViewById(R.id.gdvDapan);
         gdvChondapan = (GridView) findViewById(R.id.gdvChondapan);
@@ -272,7 +261,7 @@ public class PlayActivity extends AppCompatActivity {
 
     public void goiy() {
         adapter.laythongtin();
-        //Kiểm tra còn đử diamond ko
+        //Kiểm tra còn đủ diamond ko
         if (adapter.nguoidung.diamond < 5) {
             Toast.makeText(this, "Bạn không còn đủ kim cương", Toast.LENGTH_SHORT).show();
             return;

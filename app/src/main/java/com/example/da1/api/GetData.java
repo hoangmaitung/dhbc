@@ -15,19 +15,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class GetData extends AsyncTask<Void, Void, Void> {
-
     String data;
-
     @Override
     protected Void doInBackground(Void... voids) {
         //chay
         OkHttpClient client = new OkHttpClient();
-
         //khai bao dia chi request
         Request request = new Request.Builder()
                 .url("https://5f0f11d3faef3500160b8f45.mockapi.io/laycauhoi")
                 .build();
-
         //khai bao nhan du lieu
         Response response = null;
         //tra du lieu
@@ -38,7 +34,6 @@ public class GetData extends AsyncTask<Void, Void, Void> {
             ResponseBody responseBody = response.body();
             //gan kq vao data
             data = responseBody.string();
-
         } catch (IOException e) {
             data = null;
             e.printStackTrace();

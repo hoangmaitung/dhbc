@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:text="Dùng gợi ý điền 1 ô? ( - 5 "
                         android:textColor="#6e4610"
-                        android:textSize="18sp" />
+                        android:textSize="17sp" />
 
                     <ImageView
                         android:layout_width="13dp"
@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:text=" )"
                         android:textColor="#6e4610"
-                        android:textSize="18sp" />
+                        android:textSize="17sp" />
 
                 </LinearLayout>
 

@@ -10,10 +10,14 @@
         android:label="Đuổi hình bắt chữ"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HdActivity"></activity>
-        <activity android:name=".PlayActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HdActivity"
+            android:hardwareAccelerated="false"></activity>
+        <activity android:name=".PlayActivity"
+            android:hardwareAccelerated="false"/>
+        <activity android:name=".HomeActivity"
+            android:hardwareAccelerated="false"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
